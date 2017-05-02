@@ -1,0 +1,9 @@
+version: "0.1.0"
+pre_ci_boot:
+    image: golang
+    tag: 1.8-alpine
+ci:
+    - cp -r . $GOPATH/src/app/ && cd $GOPATH/src/app
+    - go install
+    - cp $GOPATH/src/app/Dockerfile.ci $ALAUDACI_DEST_DIR/Dockerfile
+    - cp $GOPATH/bin/app $ALAUDACI_DEST_DIR
